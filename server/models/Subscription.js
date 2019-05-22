@@ -8,7 +8,8 @@ const subscriptionSchema = new Schema({
   prodcuts: [],
   lastBillingDate: Date,
   nextBillingDate: Date,
-  lifeCycle: Number
+  lifeCycle: Number,
+  email: String
 });
 
 mongoose.model('subscriptions', subscriptionSchema);
