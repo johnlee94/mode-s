@@ -8,11 +8,11 @@ class Products extends Component {
     return (
       <div>
         <Blocks />
+        <Hydration />
+        <Protein />
       </div>
     )
   }
-  // <Hydration />
-  // <Protein />
 }
 
 export default Products;

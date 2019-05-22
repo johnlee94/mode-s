@@ -3,7 +3,9 @@ import { FETCH_USER } from './types';
 import { FETCH_BLOCKS } from './types';
 import { SELECT_BLOCK } from './types';
 import { FETCH_HYDRATION } from './types';
+import { SELECT_HYDRATION } from './types';
 import { FETCH_PROTEIN } from './types';
+import { SELECT_PROTEIN } from './types';
 import { ADD_TO_CART } from './types';
 import { REMOVE_FROM_CART } from './types';
 import { RECEIVE_PRODUCTS } from './types'
@@ -32,6 +34,22 @@ var allProducts = [];
 export const selectBlock = (variantId, productId) => dispatch => {
   dispatch({
     type: SELECT_BLOCK,
+    variantId: variantId,
+    productId: productId
+  })
+}
+
+export const selectHydration = (variantId, productId) => dispatch => {
+  dispatch({
+    type: SELECT_HYDRATION,
+    variantId: variantId,
+    productId: productId
+  })
+}
+
+export const selectProtein = (variantId, productId) => dispatch => {
+  dispatch({
+    type: SELECT_PROTEIN,
     variantId: variantId,
     productId: productId
   })
@@ -92,9 +110,9 @@ export const fetchHydration = () => async dispatch => {
     console.log(src)
     item.imageSrc = src;
   })
-  console.log(hydration);
+  console.log('hydration from server', hydration);
   allProducts = allProducts.concat(hydration)
-  dispatch({type: FETCH_HYDRATION, payload: res.data.hydration});
+  dispatch({type: FETCH_HYDRATION, hydration: hydration})
 
 }
 
@@ -118,7 +136,7 @@ export const fetchProtein = () => async dispatch => {
   console.log(protein);
   allProducts = allProducts.concat(protein);
 
-  dispatch({type: FETCH_PROTEIN, payload: res.data.protein});
+  dispatch({type: FETCH_PROTEIN, protein: protein});
 }
 
 export const fetchUser = () => async dispatch => {

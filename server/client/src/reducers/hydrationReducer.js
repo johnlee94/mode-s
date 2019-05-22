@@ -1,10 +1,34 @@
 import { FETCH_HYDRATION } from '../actions/types'
+import { SELECT_HYDRATION } from '../actions/types'
 
-export default function(state = null, action) {
+
+const initialState = {
+  productId: null,
+  variantId: null,
+  hydration: [],
+}
+
+const hydrationReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_HYDRATION:
-      return action.payload || false;
+      const { hydration, variantId, productId } = action
+      console.log('hydrationFromAction', hydration)
+      return {
+        hydration: hydration,
+        productId: hydration[0].productId,
+        variantId: hydration[0].variantId,
+      }
+    case SELECT_HYDRATION:
+      const variantId2 = action.variantId
+      const productId2 = action.productId
+      return {
+        hydration: state.hydration,
+        productId: productId2,
+        variantId: variantId2,
+      }
     default:
-      return state;
-  }
+      return state
 }
+}
+
+export default hydrationReducer;
